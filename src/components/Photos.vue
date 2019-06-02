@@ -11,13 +11,12 @@
 
 
 <script>
-import { accessKey } from "../keys.js";
 
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      key: accessKey,
+      key: process.env.VUE_APP_ACCESS_KEY,
       search: '',
       photos: []
     }
