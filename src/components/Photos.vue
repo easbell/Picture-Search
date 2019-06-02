@@ -2,7 +2,7 @@
 <template>
   <div class="hello">
     <input type='text' id='search' v-model="search"/>
-    <button v-on:click='getPhotos'>Search </button>
+    <button v-on:click='getPhotos'>Search</button>
     <div v-for='photo in photos' v-bind:key='photo' class='photos'>
       <img v-bind:src='photo'/>
     </div>
@@ -21,11 +21,7 @@ export default {
       search: '',
       photos: []
     }
-  },
-// {/* 
-//   async created () {
-//     this.getPhotos()
-//   }, */}
+  }, 
 
   methods: {
     async getPhotos () {
