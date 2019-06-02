@@ -1,7 +1,8 @@
 
 <template>
   <div class="hello">
-    <input type='text' id='search'/>
+    <input type='text' id='search' v-model="search"/>
+    <button v-on:click='getPhotos'>Search </button>
     <div v-for='photo in photos' v-bind:key='photo' class='photos'>
       <img v-bind:src='photo'/>
     </div>
@@ -21,14 +22,14 @@ export default {
       photos: []
     }
   },
-
-  async created () {
-    this.getPhotos()
-  },
+// {/* 
+//   async created () {
+//     this.getPhotos()
+//   }, */}
 
   methods: {
     async getPhotos () {
-      const response = await fetch(`https://api.unsplash.com/search/photos?page=1&query=dog&client_id=${this.key}`)
+      const response = await fetch(`https://api.unsplash.com/search/photos?page=1&query=${this.search}&client_id=${this.key}`)
       try {
         if(response.ok) {
           const photos = await response.json();
