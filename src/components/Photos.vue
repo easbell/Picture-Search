@@ -1,8 +1,10 @@
 
 <template>
-  <div class="hello">
-    <input type='text' id='search' v-model="search"/>
-    <button v-on:click='getPhotos'>Search</button>
+  <div class="photos">
+    <form v-on:submit.prevent='getPhotos'>
+      <input type='text' id='search' v-model="search"/>
+      <button type='submit'>Search</button>
+    </form>
     <div v-for='photo in photos' v-bind:key='photo' class='photos'>
       <img v-bind:src='photo'/>
     </div>
@@ -13,7 +15,7 @@
 <script>
 
 export default {
-  name: 'HelloWorld',
+  name: 'Photos',
   data () {
     return {
       key: process.env.VUE_APP_ACCESS_KEY,
