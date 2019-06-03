@@ -5,6 +5,7 @@
       <input type='text' id='search' v-model="search"/>
       <button type='submit'>Search</button>
     </form>
+    <img v-if='loading' src='https://cdn.dribbble.com/users/503653/screenshots/3143656/fluid-loader.gif' />
     <div v-for='photo in photos' v-bind:key='photo' class='photos'>
       <img v-bind:src='photo'/>
     </div>
@@ -19,6 +20,7 @@ export default {
   data () {
     return {
       key: process.env.VUE_APP_ACCESS_KEY,
+      loading: false,
       search: '',
       photos: []
     }
@@ -26,6 +28,7 @@ export default {
 
   methods: {
     async getPhotos () {
+      this.loading = true;
       const response = await fetch(`https://api.unsplash.com/search/photos?page=1&query=${this.search}&client_id=${this.key}`)
       try {
         if(response.ok) {
@@ -35,6 +38,7 @@ export default {
       } catch(error) {
         console.log(error.message)
       }
+      this.loading = false;
     },
 
     cleanPhotoData (photos) {
@@ -45,6 +49,9 @@ export default {
 </script>
 
 <style scoped>
+.loader {
+  background-image: url('https://cdn.dribbble.com/users/503653/screenshots/3143656/fluid-loader.gif')
+}
 h3 {
   margin: 40px 0 0;
 }
