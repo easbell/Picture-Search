@@ -7,8 +7,10 @@
     </form>
     <img v-if='loading' src='https://ui-ex.com/images/transparent-background-loading.gif' />
     <div class='photo-container'>
-      <div v-for='photo in photos' v-bind:key='photo' >
-        <img v-bind:src='photo' class='single-img'/>
+      <div v-for='photo in photos' v-bind:key='photo.display' >
+        <a v-bind:href='photo.link' target="_blank">
+          <img v-bind:src='photo.display' class='single-img'/>  
+        </a>
       </div>
     </div>
   </div>
@@ -46,7 +48,7 @@ export default {
     },
 
     cleanPhotoData (photos) {
-      this.photos = photos.map(photo => photo.urls.regular)
+      this.photos = photos.map(photo => ({display: photo.urls.regular, link: photo.links.html}))
     }
   }
 }
