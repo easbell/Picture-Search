@@ -6,8 +6,10 @@
       <button type='submit'>Search</button>
     </form>
     <img v-if='loading' src='https://ui-ex.com/images/transparent-background-loading.gif' />
-    <div v-for='photo in photos' v-bind:key='photo' class='photos'>
-      <img v-bind:src='photo'/>
+    <div class='photo-container'>
+      <div v-for='photo in photos' v-bind:key='photo' >
+        <img v-bind:src='photo' class='single-img'/>
+      </div>
     </div>
   </div>
 </template>
@@ -51,6 +53,18 @@ export default {
 </script>
 
 <style scoped>
+.photo-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-gap: 20px;
+  align-items: stretch;
+}
+
+.single-img {
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+  max-width: 100%;
+}
+
 h3 {
   margin: 40px 0 0;
 }
