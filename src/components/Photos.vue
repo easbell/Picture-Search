@@ -4,7 +4,7 @@
     <form v-on:submit.prevent='getPhotos'>
       <input type='text' id='search' v-model="search" placeholder='Search for an image'/>
     </form>
-    <img v-if='loading' src='https://ui-ex.com/images/transparent-background-loading.gif' />
+    <img v-if='loading' src='https://ui-ex.com/images/transparent-background-loading.gif' class='loader'/>
     <div class='photo-container'>
       <div v-for='photo in photos' v-bind:key='photo.display' >
         <a v-bind:href='photo.link' target="_blank">
@@ -33,7 +33,7 @@ export default {
     async getPhotos () {
       this.photos = [];
       this.loading = true;
-      const response = await fetch(`https://api.unsplash.com/search/photos?page=1&query=${this.search}&client_id=${this.key}`)
+      const response = await fetch(`https://api.unsplash.com/search/photos?page=1&per_page=30&query=${this.search}&client_id=${this.key}`)
       try {
         if(response.ok) {
           const photos = await response.json();
@@ -59,6 +59,10 @@ export default {
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   grid-gap: 20px;
   align-items: stretch;
+  margin-top: 50px;
+}
+
+.loader {
   margin-top: 50px;
 }
 
