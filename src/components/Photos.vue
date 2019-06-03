@@ -2,8 +2,7 @@
 <template>
   <div class="photos">
     <form v-on:submit.prevent='getPhotos'>
-      <input type='text' id='search' v-model="search"/>
-      <button type='submit'>Search</button>
+      <input type='text' id='search' v-model="search" placeholder='Search for an image'/>
     </form>
     <img v-if='loading' src='https://ui-ex.com/images/transparent-background-loading.gif' />
     <div class='photo-container'>
@@ -60,11 +59,23 @@ export default {
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   grid-gap: 20px;
   align-items: stretch;
+  margin-top: 50px;
 }
 
 .single-img {
   box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
   max-width: 100%;
+}
+
+input {
+  font-size: 16px;
+  padding: 9px;
+  padding-left: 15px;
+  width: 550px;
+  border-radius: 102px;
+  border-style: solid;
+  border: 1px solid #cccccc;
+  outline: none;
 }
 
 h3 {
